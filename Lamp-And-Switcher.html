@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lamp-And-Switcher</title>
+</head>
+<body>
+<script>
+    // Lớp lamp
+    let Lamp = function(name) {
+        this.name = name;
+        this.status = false;
+        this.turnOn = function () {
+            if (this.status) {
+                document.write("đèn đang bật?");
+            } else {
+                document.write("đèn đã được bật!");
+                this.status = true;
+            }
+        };
+        this.turnOff = function () {
+            if (this.status) {
+                document.write("đèn đã được tắt!");
+                this.status = false;
+            } else {
+                document.write("đèn đang bật?");
+            }
+        };
+    };
+    // Lớp switcher
+    let Switcher = function () {
+        this.lamp = {};
+        this.conectStatus = false;
+        this.conectToLamp = function (obj) {
+            this.lamp = obj;
+            this.status = true;
+        };
+        this.getStatus = function () {
+            if (this.status) {
+                document.write(this.lamp.name);
+                document.write(this.lamp.status);
+            }
+        };
+        this.turnOn = function () {
+            if (this.status) {
+                this.lamp.turnOn();
+                this.getStatus();
+            }
+        };
+        this.turnOff = function () {
+            if (this.status) {
+                this.lamp.turnOff();
+                this.getStatus();
+            }
+        };
+    };
+    // tạo đối tượng mới
+    let rangdongLamp = new Lamp("110");
+    let rangdongSwitcher = new Switcher();
+    rangdongSwitcher.conectToLamp(sonyLamp);
+    rangdongSwitcher.turnOn();
+    rangdongSwitcher.turnOff();
+</script>
+</body>
+</html>
